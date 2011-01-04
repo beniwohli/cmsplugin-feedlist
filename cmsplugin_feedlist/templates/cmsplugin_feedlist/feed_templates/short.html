@@ -1,0 +1,10 @@
+{% extends "cmsplugin_feedlist/base.html" %}
+{% block entries %}
+    {% for entry in entries %}
+        <li>
+            <a href="{{ entry.link }}">{{ entry.title }}</a>
+            {% if entry.author %}<span class="feed-entry-author">{{ entry.author }}</span>{% endif %}{% if entry.author and entry.pubdate %}, {% endif %}
+            {% if entry.pubdate %}<span class="feed-entry-date">{{ entry.pubdate|date:"SHORT_DATE_FORMAT" }}</span>{% endif %}
+        </li>
+    {% endfor %}
+{% endblock %}

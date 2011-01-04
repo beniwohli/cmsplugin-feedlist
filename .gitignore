@@ -1,0 +1,14 @@
+#*
+*$
+*.log
+*.orig
+*.pyc
+*.pyo
+*.rej
+*~
+_$*
+dist
+build
+.project
+.pydevproject
+cmsplugin_feedlist.egg-info
