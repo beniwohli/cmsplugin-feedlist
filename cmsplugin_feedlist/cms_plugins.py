@@ -23,6 +23,8 @@ class FeedCMSPlugin(CMSPluginBase):
         feed = cache.get(key, None)
         if not feed:
             feed = feedparser.parse(instance.feed_url)
+            if not ('atom' in feed.version or 'rss' in feed.version):
+                return context
             feed.entries = feed.entries[:instance.items]
             for entry in feed.entries:
                 if hasattr(entry, 'updated_parsed'):
