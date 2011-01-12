@@ -25,6 +25,8 @@ class FeedCMSPlugin(CMSPluginBase):
             feed = feedparser.parse(instance.feed_url)
             if not ('atom' in feed.version or 'rss' in feed.version):
                 return context
+            if 'bozo_exception' in feed:
+                del feed['bozo_exception']
             feed.entries = feed.entries[:instance.items]
             for entry in feed.entries:
                 if hasattr(entry, 'updated_parsed'):
@@ -36,7 +38,7 @@ class FeedCMSPlugin(CMSPluginBase):
             cache.set(key, feed, timeout=instance.refresh)
         context.update({
             'title': instance.title,
-            'entries': feed.entries,
+            'entries': feed.entries[:instance.items],
         })
         return context
     
