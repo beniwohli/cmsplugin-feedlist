@@ -20,7 +20,7 @@ def get_templates():
 class FeedPlugin(CMSPlugin):    
     title = models.CharField(_('title'), max_length=100, blank=True, default='')
     feed_url = models.URLField(_('URL'),)
-    template_name = models.CharField(_('template'), max_length=100, blank=True, default='', choices=get_templates())
+    template_name = models.CharField(_('template'), max_length=100, default='', choices=get_templates())
     items = models.PositiveIntegerField(_('items'), default=5)
     refresh = models.PositiveIntegerField(_('refresh time'), default=15*60, help_text=_('in seconds'))
     
